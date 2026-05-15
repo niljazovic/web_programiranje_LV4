@@ -1,38 +1,22 @@
 <?php
-// =============================================
-// includes/auth.php - Autentifikacija
-// =============================================
-
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 require_once __DIR__ . '/db.php';
 
-/**
- * Vraća trenutno prijavljenog korisnika ili null
- */
 function trenutniKorisnik(): ?array {
     return $_SESSION['korisnik'] ?? null;
 }
 
-/**
- * Je li korisnik prijavljen?
- */
 function jePrijavljen(): bool {
     return isset($_SESSION['korisnik']);
 }
 
-/**
- * Je li korisnik admin?
- */
 function jeAdmin(): bool {
     return ($_SESSION['korisnik']['uloga'] ?? '') === 'admin';
 }
 
-/**
- * Preusmjeri na login ako nije prijavljen
- */
 function zahtijevajPrijavu(): void {
     if (!jePrijavljen()) {
         header('Location: login.php?poruka=morate_se_prijaviti');
@@ -40,9 +24,6 @@ function zahtijevajPrijavu(): void {
     }
 }
 
-/**
- * Preusmjeri ako nije admin
- */
 function zahtijevajAdmin(): void {
     zahtijevajPrijavu();
     if (!jeAdmin()) {
@@ -51,10 +32,6 @@ function zahtijevajAdmin(): void {
     }
 }
 
-/**
- * Registracija novog korisnika
- * Vraća ['ok' => true] ili ['greska' => 'poruka']
- */
 function registrirajKorisnika(string $ime, string $email, string $lozinka): array {
     // Validacija
     if (strlen($ime) < 3 || strlen($ime) > 50) {
@@ -84,10 +61,6 @@ function registrirajKorisnika(string $ime, string $email, string $lozinka): arra
     return ['ok' => true];
 }
 
-/**
- * Prijava korisnika
- * Vraća ['ok' => true] ili ['greska' => 'poruka']
- */
 function prijaviKorisnika(string $ime, string $lozinka): array {
     if (empty($ime) || empty($lozinka)) {
         return ['greska' => 'Unesite korisničko ime i lozinku.'];
@@ -115,9 +88,6 @@ function prijaviKorisnika(string $ime, string $lozinka): array {
     return ['ok' => true];
 }
 
-/**
- * Odjava korisnika
- */
 function odjaviKorisnika(): void {
     $_SESSION = [];
     session_destroy();

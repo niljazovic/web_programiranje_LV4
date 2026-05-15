@@ -1,8 +1,4 @@
 <?php
-// =============================================
-// admin.php - Admin sučelje (CRUD filmova)
-// =============================================
-
 require_once 'includes/auth.php';
 require_once 'includes/db.php';
 
@@ -11,11 +7,9 @@ zahtijevajAdmin();
 $pdo    = getDB();
 $poruka = '';
 $greska = '';
-$akcija = $_GET['akcija'] ?? 'popis'; // popis | dodaj | uredi | brisi
+$akcija = $_GET['akcija'] ?? 'popis';
 
-// ============================================
-// VALIDACIJA FILMA (server-side)
-// ============================================
+
 function validirajFilm(array $d): array {
     $greske = [];
     if (strlen(trim($d['naslov'] ?? '')) < 1 || strlen(trim($d['naslov'])) > 200) {
@@ -39,7 +33,7 @@ function validirajFilm(array $d): array {
     return $greske;
 }
 
-// ---- DODAJ FILM ----
+// dodavnje filma
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['dodaj_film'])) {
     $greske = validirajFilm($_POST);
     if ($greske) {
@@ -63,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['dodaj_film'])) {
     }
 }
 
-// ---- UREDI FILM ----
+// uredjivanje filma
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['uredi_film'])) {
     $idFilma = (int)($_POST['id_film'] ?? 0);
     $greske  = validirajFilm($_POST);
@@ -90,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['uredi_film'])) {
     }
 }
 
-// ---- BRIŠI FILM ----
+// brisanje filma
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['brisi_film'])) {
     $idFilma = (int)($_POST['id_film'] ?? 0);
     $stmt    = $pdo->prepare('DELETE FROM filmovi WHERE id = ?');
@@ -98,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['brisi_film'])) {
     $poruka  = 'Film obrisan.';
 }
 
-// Dohvati film za uređivanje
+// dohvacanje filma za uredjivanje
 $filmZaUredivanje = null;
 if ($akcija === 'uredi' && isset($_GET['id'])) {
     $stmt = $pdo->prepare('SELECT * FROM filmovi WHERE id = ?');
@@ -106,10 +100,9 @@ if ($akcija === 'uredi' && isset($_GET['id'])) {
     $filmZaUredivanje = $stmt->fetch();
 }
 
-// Dohvati sve filmove
+// svi filmovi
 $filmovi = $pdo->query('SELECT * FROM filmovi ORDER BY naslov ASC')->fetchAll();
 
-// Statistike
 $brKorisnika = $pdo->query('SELECT COUNT(*) FROM korisnici')->fetchColumn();
 $brFilmova   = count($filmovi);
 $brVideoteka = $pdo->query('SELECT COUNT(*) FROM zeljeni_filmovi')->fetchColumn();

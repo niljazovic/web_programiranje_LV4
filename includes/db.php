@@ -1,11 +1,8 @@
 <?php
-// =============================================
-// includes/db.php - Konekcija na bazu
-// =============================================
 
 define('DB_HOST', 'localhost');
-define('DB_USER', 'root');       // promijeni za Railway/produkciju
-define('DB_PASS', '');           // promijeni za Railway/produkciju
+define('DB_USER', 'root'); 
+define('DB_PASS', '');   
 define('DB_NAME', 'netflix_lv4');
 
 function getDB(): PDO {

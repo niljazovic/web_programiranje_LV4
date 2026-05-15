@@ -1,7 +1,4 @@
 <?php
-// =============================================
-// includes/header.php - Zajednički layout
-// =============================================
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();

@@ -1,7 +1,4 @@
 <?php
-// =============================================
-// videoteka.php - Osobna videoteka korisnika
-// =============================================
 
 require_once 'includes/auth.php';
 require_once 'includes/db.php';
@@ -12,7 +9,6 @@ $pdo      = getDB();
 $korisnik = trenutniKorisnik();
 $poruka   = '';
 
-// ---- UKLONI IZ VIDEOTEKE ----
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ukloni_film'])) {
     $idFilma = (int)($_POST['id_film'] ?? 0);
     $stmt = $pdo->prepare('DELETE FROM zeljeni_filmovi WHERE id_korisnik = ? AND id_film = ?');
@@ -20,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ukloni_film'])) {
     $poruka = 'Film uklonjen iz videoteke.';
 }
 
-// ---- DOHVATI VIDEOTEKU KORISNIKA ----
 $stmt = $pdo->prepare('
     SELECT f.*, zf.datum_dodavanja
     FROM zeljeni_filmovi zf
@@ -31,7 +26,6 @@ $stmt = $pdo->prepare('
 $stmt->execute([$korisnik['id']]);
 $filmovi = $stmt->fetchAll();
 
-// Statistike
 $ukupno    = count($filmovi);
 $ukupnoMin = array_sum(array_column($filmovi, 'trajanje_min'));
 $prosOcjena = $ukupno > 0 ? array_sum(array_column($filmovi, 'ocjena')) / $ukupno : 0;

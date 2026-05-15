@@ -1,11 +1,7 @@
 <?php
-// =============================================
-// login.php - Prijava i registracija
-// =============================================
 
 require_once 'includes/auth.php';
 
-// Ako je već prijavljen, idi na index
 if (jePrijavljen()) {
     header('Location: index.php');
     exit;
@@ -13,11 +9,11 @@ if (jePrijavljen()) {
 
 $greska = '';
 $uspjeh = '';
-$tab = $_GET['tab'] ?? 'prijava'; // 'prijava' ili 'registracija'
+$tab = $_GET['tab'] ?? 'prijava'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['akcija']) && $_POST['akcija'] === 'registracija') {
-        // --- REGISTRACIJA ---
+        //registracijski dio
         $tab = 'registracija';
         $ime     = trim($_POST['korisnicko_ime'] ?? '');
         $email   = trim($_POST['email'] ?? '');
@@ -36,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     } else {
-        // --- PRIJAVA ---
+        //login dio 
         $ime = trim($_POST['korisnicko_ime'] ?? '');
         $loz = $_POST['lozinka'] ?? '';
         $rez = prijaviKorisnika($ime, $loz);
@@ -49,7 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Poruka iz redirecta
 if (isset($_GET['poruka']) && $_GET['poruka'] === 'morate_se_prijaviti') {
     $greska = 'Morate se prijaviti da biste pristupili toj stranici.';
 }
