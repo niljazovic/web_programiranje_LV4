@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO meta tag -->
+  <meta name="description" content="Vizualizacija nekih od filmova iz Netflix kataloga pomoću grafikona.">
+
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/grafikon.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <title>Grafikoni | Netflix Filmovi</title>
+</head>
+<body>
+
+  <!-- CSS-only toggle checkbox za mobilnu navigaciju -->
+  <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-hidden="true">
+
+  <header role="banner">
+    <h1>
+      <span class="accent">NET</span>FLIX
+      <span style="color: var(--color-text-muted); font-size: 1rem; font-weight: 400; margin-left: 0.5rem;">| Grafikoni</span>
+    </h1>
+    <!-- Label gumb za CSS-only mobilni menu -->
+    <label for="menu-toggle" class="menu-btn" aria-label="Otvori navigaciju">&#9776; Menu</label>
+  </header>
+
+  <div class="page-wrapper">
+
+    <nav aria-label="Primarna navigacija" role="navigation">
+      <ul>
+        <li><a href="index.php">&#127916; Početna</a></li>
+        <li><a href="films.php">🎬 Filmovi</a></li>
+        <li><a href="grafikon.html" class="active" aria-current="page">&#128200; Grafikoni</a></li>
+        <li><a href="galerija.php">&#128444; Galerija</a></li>
+        <li><a href="videoteka.php">📚 Moja videoteka</a></li>
+
+      </ul>
+    </nav>
+
+    <main id="main-content" aria-label="Vizualizacija podataka o filmovima">
+
+      <section aria-labelledby="grafikon-naslov" class="fade-in">
+        <h2 id="grafikon-naslov">Vizualizacija žanrova</h2>
+        <p>
+          Na temelju 20 odabranih filmova iz Netflix kataloga, prikazana je raspodjela žanrova.
+        </p>
+      </section>
+
+      <!-- Grid s grafikonima: na desktopu 2 stupca, na mobilnom 1 stupac -->
+      <div class="charts-wrapper" role="region" aria-label="Grafikoni raspodjele žanrova">
+
+        <!-- PIE CHART (Kružni grafikon) -->
+        <!-- Na desktopu: pie chart, na mobilnom: i dalje vidljiv (manji) -->
+        <div class="chart-box" aria-labelledby="pie-chart-title">
+          <h2 id="pie-chart-title">Raspodjela žanrova</h2>
+          <p class="chart-subtitle">Kružni grafikon &mdash; udio žanrova od 20 filmova</p>
+
+          <div class="pie-chart-container">
+            <!-- Wrapper za pozicioniranje donut teksta -->
+            <div class="pie-wrapper" role="img" aria-label="Kružni grafikon raspodjele žanrova filmova">
+              <!-- Kružni grafikon - conic-gradient tehnika (CSS-only) -->
+              <div class="pie-chart"></div>
+            </div>
+
+            <div class="pie-legend" aria-label="Legenda kružnog grafikona">
+              <div class="legend-item">
+                <span class="legend-dot" style="background: var(--c-action);"></span>
+                <span>Akcija &amp; Avantura</span>
+                <span class="legend-pct">25%</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot" style="background: var(--c-dramas);"></span>
+                <span>Drama</span>
+                <span class="legend-pct">20%</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot" style="background: var(--c-comedies);"></span>
+                <span>Komedija</span>
+                <span class="legend-pct">15%</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot" style="background: var(--c-docs);"></span>
+                <span>Dokumentarci</span>
+                <span class="legend-pct">15%</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot" style="background: var(--c-horror);"></span>
+                <span>Horror</span>
+                <span class="legend-pct">5%</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot" style="background: var(--c-other);"></span>
+                <span>Ostalo</span>
+                <span class="legend-pct">20%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HISTOGRAM (Stupčasti grafikon) -->
+        <div class="chart-box" aria-labelledby="histogram-title">
+          <h2 id="histogram-title">Broj filmova po žanru</h2>
+          <p class="chart-subtitle">Histogram &mdash; Prijeđite mišem za detalje</p>
+
+          <!-- Histogram kontejner - Flexbox -->
+          <div class="histogram" role="img" aria-label="Histogram broja filmova po žanru">
+            <!-- Svaki bar-item je jedan stupac histograma -->
+            <!-- data-count atribut koristi ::after pseudo-element za prikaz tooltipa na hover -->
+            <div class="bar-item">
+              <div class="bar action" data-count="5" aria-label="Akcija: 5 filmova"></div>
+              <div class="bar-label">Akcija</div>
+            </div>
+            <div class="bar-item">
+              <div class="bar drama" data-count="4" aria-label="Drama: 4 filma"></div>
+              <div class="bar-label">Drama</div>
+            </div>
+            <div class="bar-item">
+              <div class="bar comedy" data-count="3" aria-label="Komedija: 3 filma"></div>
+              <div class="bar-label">Komedija</div>
+            </div>
+            <div class="bar-item">
+              <div class="bar docs" data-count="3" aria-label="Dokumentarci: 3 filma"></div>
+              <div class="bar-label">Docs</div>
+            </div>
+            <div class="bar-item">
+              <div class="bar horror" data-count="1" aria-label="Horror: 1 film"></div>
+              <div class="bar-label">Horror</div>
+            </div>
+            <div class="bar-item">
+              <div class="bar other" data-count="4" aria-label="Ostalo: 4 filma"></div>
+              <div class="bar-label">Ostalo</div>
+            </div>
+          </div>
+
+          <p style="margin-top: 2.5rem; font-size: 0.8rem; color: var(--color-text-muted);">
+            *Podaci temelje se na 20 odabranih filmova iz Netflix dataseta.
+          </p>
+        </div>
+
+      </div>
+
+      <article aria-labelledby="analiza-title">
+        <h2 id="analiza-title">Analiza kataloga</h2>
+        <p>
+          Akcijski filmovi dominiraju odabranim uzorkom s 25% zastupljenosti, slijede drame (20%)
+          te komedije i dokumentarci s po 15%. Horror filmovi čine svega 5% uzorka, što odražava
+          širu sliku Netflix kataloga gdje su zabavni žanrovi daleko zastupljeniji od specifičnih.
+        </p>
+      </article>
+
+    </main>
+  </div>
+
+  <footer role="contentinfo">
+    <p>&copy; 2025 Web Programiranje. Sva prava pridržana.</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,366 @@
+/* =============================================
+   lv4.css - LV4 PHP/MySQL specifični stilovi
+   Nadovezuje se na style.css i lv3.css
+   ============================================= */
+
+/* ---- LV4 badge --------------------------------- */
+.lv4-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #e50914, #8b0000);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 0.2em 0.8em;
+  border-radius: 3px;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+/* ---- Header korisnik info -------------------- */
+.header-korisnik {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.header-ime {
+  color: var(--color-text-muted);
+}
+
+.badge-admin {
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.2em 0.6em;
+  border-radius: 3px;
+  letter-spacing: 0.1em;
+}
+
+.btn-odjava {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--color-text-muted);
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.btn-odjava:hover {
+  border-color: var(--color-accent);
+  color: #fff;
+}
+
+/* ---- Alert poruke ------------------------------ */
+.alert {
+  padding: 0.85rem 1.2rem;
+  border-radius: 6px;
+  margin-bottom: 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-left: 4px solid;
+}
+
+.alert-success {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: #22c55e;
+  color: #4ade80;
+}
+
+.alert-error {
+  background: rgba(229, 9, 20, 0.1);
+  border-color: var(--color-accent);
+  color: #ff6b6b;
+}
+
+.alert-warning {
+  background: rgba(245, 197, 24, 0.1);
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+/* ---- Statistike box --------------------------- */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.stat-box {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  text-align: center;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.stat-box:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 4px 20px rgba(229, 9, 20, 0.15);
+}
+
+.stat-broj {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  margin-top: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ---- Auth forme -------------------------------- */
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 0;
+}
+
+.auth-box {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 450px;
+}
+
+.auth-title {
+  font-size: 1.8rem;
+  margin-bottom: 1.25rem;
+  color: var(--color-text);
+}
+
+.auth-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--color-border);
+}
+
+.auth-tab {
+  padding: 0.6rem 1.2rem;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.auth-tab.active,
+.auth-tab:hover {
+  color: var(--color-text);
+  border-bottom-color: var(--color-accent);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 5px;
+  color: var(--color-text);
+  padding: 0.55rem 0.75rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--color-accent);
+}
+
+.form-group small {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+.auth-hint {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: rgba(255,255,255,0.04);
+  border-radius: 5px;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.auth-hint code {
+  background: rgba(229,9,20,0.15);
+  color: #e50914;
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+}
+
+/* ---- Ocjena badge varijante ------------------- */
+.ocjena-badge {
+  display: inline-block;
+  background: rgba(229, 9, 20, 0.15);
+  color: #e50914;
+  border: 1px solid rgba(229, 9, 20, 0.3);
+  padding: 0.15em 0.5em;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.85em;
+}
+
+.ocjena-niska {
+  background: rgba(245, 197, 24, 0.1);
+  color: var(--color-gold);
+  border-color: rgba(245, 197, 24, 0.3);
+}
+
+/* ---- Sort linkovi u tablici ------------------- */
+.sort-link {
+  color: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.sort-link:hover {
+  color: var(--color-accent);
+}
+
+/* ---- Videoteka stilovi ------------------------ */
+.prazna-videoteka {
+  text-align: center;
+  padding: 3rem;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+}
+
+.prazna-videoteka p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.row-niska-ocjena {
+  background: rgba(245, 197, 24, 0.04) !important;
+}
+
+.upozorenje-inline {
+  font-size: 0.7rem;
+  color: var(--color-gold);
+  margin-left: 0.4rem;
+}
+
+.upozorenje-box {
+  background: rgba(245, 197, 24, 0.08);
+  border: 1px solid rgba(245, 197, 24, 0.3);
+  border-left: 4px solid var(--color-gold);
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  margin-top: 1.5rem;
+  color: var(--color-text);
+}
+
+.upozorenje-box h4 {
+  color: var(--color-gold);
+  margin-bottom: 0.5rem;
+}
+
+.upozorenje-box ul {
+  margin: 0.5rem 0 0.75rem 1.5rem;
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+}
+
+.btn-ukloni-film {
+  background: transparent;
+  border: 1px solid rgba(229,9,20,0.4);
+  color: var(--color-accent);
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-family: inherit;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-ukloni-film:hover {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* ---- Admin stilovi ----------------------------- */
+.admin-forma-box {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-accent);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-forma-box h3 {
+  margin-bottom: 1.25rem;
+}
+
+.btn-edit {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: border-color 0.2s;
+  margin-right: 0.25rem;
+}
+
+.btn-edit:hover {
+  border-color: #f5c518;
+}
+
+.btn-delete {
+  background: transparent;
+  border: 1px solid rgba(229,9,20,0.3);
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+}
+
+.btn-delete:hover {
+  background: rgba(229,9,20,0.2);
+}

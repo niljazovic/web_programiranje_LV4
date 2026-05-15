@@ -1,0 +1,390 @@
+/* ============================================================
+   LV3 - Stilovi za JavaScript zadatke
+   Nastavlja na Netflix dark temu iz style.css
+   ============================================================ */
+
+/* ---- LV3 sekcija ----------------------------------------- */
+.lv3-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid rgba(229, 9, 20, 0.4);
+}
+
+.lv3-section-header {
+  margin-bottom: 1.5rem;
+}
+
+.lv3-section-header h2 {
+  margin: 0.4rem 0 0.6rem;
+}
+
+.lv3-opis {
+  color: var(--color-text-muted, #aaa);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.lv3-opis code {
+  background: rgba(229, 9, 20, 0.12);
+  color: #e50914;
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+  font-size: 0.85em;
+}
+
+/* LV3 badge */
+.lv3-badge {
+  display: inline-block;
+  background: #e50914;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.2em 0.7em;
+  border-radius: 3px;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.lv3-badge-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+/* ---- Layout: main tablica + košarica aside --------------- */
+.lv3-layout {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.lv3-main {
+  flex: 1;
+  min-width: 0; /* sprječava overflow */
+}
+
+/* ---- Filteri -------------------------------------------- */
+.filteri-wrapper {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.filteri-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.filter-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #aaa);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.filter-group select,
+.filter-group input[type="text"] {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 5px;
+  color: inherit;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.filter-group select:focus,
+.filter-group input[type="text"]:focus {
+  border-color: #e50914;
+}
+
+.filter-group select option {
+  background: #1a1a1a;
+}
+
+/* Range slider */
+.filter-group input[type="range"] {
+  accent-color: #e50914;
+  width: 100%;
+  cursor: pointer;
+}
+
+.slider-val {
+  color: #e50914;
+  font-weight: 700;
+  margin-left: 0.3em;
+}
+
+.filteri-akcije {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--color-text-muted, #aaa);
+  padding: 0.5rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-secondary:hover {
+  border-color: #e50914;
+  color: #fff;
+}
+
+.rezultati-info {
+  font-size: 0.8rem;
+  color: var(--color-text-muted, #aaa);
+  margin-left: auto;
+}
+
+/* ---- CSV Tablica dodatni stilovi ------------------------- */
+#filmovi-csv-tablica .ocjena-badge {
+  display: inline-block;
+  background: rgba(229, 9, 20, 0.15);
+  color: #e50914;
+  border: 1px solid rgba(229, 9, 20, 0.3);
+  padding: 0.15em 0.5em;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.85em;
+}
+
+/* Gumb "Dodaj u košaricu" u tablici */
+.btn-kosarica {
+  background: transparent;
+  border: 1px solid rgba(229, 9, 20, 0.5);
+  color: #e50914;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-family: inherit;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-kosarica:hover:not(:disabled) {
+  background: #e50914;
+  color: #fff;
+}
+
+.btn-kosarica.btn-dodano {
+  background: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.4);
+  color: #22c55e;
+  cursor: default;
+}
+
+/* ---- Košarica (aside) ----------------------------------- */
+#kosarica-aside {
+  width: 260px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(229, 9, 20, 0.3);
+  border-radius: 8px;
+  padding: 1.2rem;
+  position: sticky;
+  top: 1rem;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.kosarica-header h3 {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.kosarica-broj {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #e50914;
+  color: #fff;
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.kosarica-prazna-msg {
+  color: var(--color-text-muted, #aaa);
+  font-size: 0.82rem;
+  text-align: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 1rem;
+}
+
+.lista-kosarice {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.kosarica-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.6rem;
+  background: rgba(255,255,255,0.04);
+  border-radius: 5px;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+.kosarica-film-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.kosarica-naslov {
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kosarica-meta {
+  font-size: 0.7rem;
+  color: var(--color-text-muted, #aaa);
+}
+
+.btn-ukloni {
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted, #aaa);
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
+  flex-shrink: 0;
+  transition: color 0.2s, background 0.2s;
+}
+
+.btn-ukloni:hover {
+  color: #e50914;
+  background: rgba(229, 9, 20, 0.1);
+}
+
+.btn-potvrdi {
+  width: 100%;
+  background: #e50914;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.6rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn-potvrdi:hover {
+  background: #c40812;
+}
+
+.btn-potvrdi:active {
+  transform: scale(0.98);
+}
+
+/* ---- Toast obavijesti ------------------------------------ */
+#toast-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+.toast {
+  background: #1e1e1e;
+  color: #fff;
+  padding: 0.7rem 1.1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  border-left: 3px solid #e50914;
+  max-width: 320px;
+  animation: toastIn 0.3s ease;
+  pointer-events: all;
+}
+
+.toast-success { border-color: #22c55e; }
+.toast-warning { border-color: #f59e0b; }
+.toast-info    { border-color: #3b82f6; }
+
+.toast-fade {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+@keyframes toastIn {
+  from { transform: translateX(20px); opacity: 0; }
+  to   { transform: translateX(0);   opacity: 1; }
+}
+
+/* ---- Responzivnost --------------------------------------- */
+@media (max-width: 768px) {
+  .lv3-layout {
+    flex-direction: column;
+  }
+
+  #kosarica-aside {
+    width: 100%;
+    position: static;
+    max-height: none;
+  }
+
+  .filteri-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filteri-akcije {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .rezultati-info {
+    margin-left: 0;
+  }
+}

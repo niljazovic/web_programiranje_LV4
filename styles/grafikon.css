@@ -1,0 +1,267 @@
+:root {
+  --c-dramas:    #e50914;  
+  --c-comedies:  #f5c518;   
+  --c-action:    #00b4d8;  
+  --c-docs:      #06d6a0;  
+  --c-horror:    #8338ec;   
+  --c-other:     #444460;   
+
+  --pie-size: 260px;
+
+  --bar-max-height: 200px;
+}
+
+.charts-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  margin: 2rem 0;
+}
+
+.chart-box {
+  background: var(--color-surface);
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  padding: 2rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.chart-box:hover {
+  box-shadow: 0 8px 30px rgba(229, 9, 20, 0.15);
+}
+
+.chart-box h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.25rem;
+  color: var(--color-text);
+}
+
+.chart-subtitle {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.pie-chart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.pie-chart {
+  width: var(--pie-size);
+  height: var(--pie-size);
+  border-radius: 50%;
+
+
+  background: conic-gradient(
+    var(--c-action)    0deg 90deg,      
+    var(--c-dramas)    90deg 162deg,    
+    var(--c-comedies)  162deg 216deg,   
+    var(--c-docs)      216deg 270deg,   
+    var(--c-horror)    270deg 288deg,
+    var(--c-other)     288deg 360deg    
+  );
+
+  /* Animacija: pie chart se rotira i "otkriva" na učitavanju */
+  animation: pie-reveal 1.2s ease-out forwards;
+  transform-origin: center;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  position: relative;
+}
+
+/* Donut efekt - bijeli krug u sredini*/
+.pie-chart::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 45%;
+  height: 45%;
+  background: var(--color-surface);
+  border-radius: 50%;
+}
+
+.pie-center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+  pointer-events: none;
+}
+
+.pie-wrapper {
+  position: relative;
+}
+
+@keyframes pie-reveal {
+  from {
+    transform: rotate(-180deg) scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+.pie-chart:hover {
+  transform: scale(1.04);
+  transition: transform 0.3s ease;
+  box-shadow: 0 12px 40px rgba(229, 9, 20, 0.3);
+}
+
+.pie-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  cursor: default;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.legend-item:hover {
+  background: var(--color-surface2);
+  color: var(--color-text);
+}
+
+.legend-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.legend-item .legend-pct {
+  margin-left: auto;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+
+.histogram {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.75rem;
+  height: var(--bar-max-height);
+  padding-bottom: 0;
+  border-bottom: 2px solid var(--color-border);
+  border-left: 2px solid var(--color-border);
+  position: relative;
+}
+
+.bar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  height: 100%;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.bar {
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  animation: bar-grow 1s ease-out forwards;
+  transform-origin: bottom;
+  cursor: default;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.bar:hover {
+  filter: brightness(1.3);
+  transform: scaleY(1.03);
+}
+
+.bar::after {
+  content: attr(data-count) " filmova";
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-surface2);
+  color: var(--color-text);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  border: 1px solid var(--color-border);
+  z-index: 10;
+}
+
+.bar:hover::after {
+  opacity: 1;
+}
+
+
+@keyframes bar-grow {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+.bar.action    { background: linear-gradient(to top, var(--c-action), #48cae4); }
+.bar.drama     { background: linear-gradient(to top, var(--c-dramas), #ff4d57); }
+.bar.comedy    { background: linear-gradient(to top, var(--c-comedies), #ffd60a); }
+.bar.docs      { background: linear-gradient(to top, var(--c-docs), #52f0c4); }
+.bar.horror    { background: linear-gradient(to top, var(--c-horror), #b57bee); }
+.bar.other     { background: linear-gradient(to top, var(--c-other), #6666aa); }
+
+.bar.action  { height: 100%; }
+.bar.drama   { height: 80%; }
+.bar.comedy  { height: 60%; }
+.bar.docs    { height: 60%; }
+.bar.horror  { height: 20%; }
+.bar.other   { height: 80%; }
+
+.bar-label {
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* =============================================
+   RESPONZIVNOST GRAFIKONA
+   Na mobilnom: dva grafikona vertikalno,
+   na tabletu: i dalje vertikalno jedan ispod drugog
+   ============================================= */
+@media (max-width: 900px) {
+  .charts-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .bar-label {
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --pie-size: 200px;
+    --bar-max-height: 150px;
+  }
+
+  .histogram {
+    gap: 0.4rem;
+  }
+}
